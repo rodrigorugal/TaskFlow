@@ -1,6 +1,4 @@
-﻿Para demonstrar **todas as tecnologias do seu perfil** (PHP, Python, JavaScript, React, Node.js, Docker, etc.), recomendo um projeto **Full Stack** robusto, mas modular, que sirva como portfólio e playground técnico. Eis a ideia:
 
----
 
 ### **📌 Nome do Projeto: "TaskFlow"**  
 *(Um sistema de gerenciamento de tarefas com microsserviços e múltiplas stacks)*  
