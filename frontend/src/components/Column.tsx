@@ -12,9 +12,15 @@ const ColumnContainer = styled.div`
   width: 300px;
 `;
 
-export const Column = ({ column }: { column: Column }) => {
+interface ColumnType {
+  id: string;
+  title: string;
+  tasks: { id: string; title: string; description: string }[];
+}
+
+export const Column = ({ column }: { column: ColumnType }) => {
   return (
-    <div style={{ width: "300px", margin: "8px" }}>
+    <ColumnContainer>
       <h3>{column.title}</h3>
       <Droppable droppableId={column.id}>
         {(provided) => (
@@ -24,12 +30,12 @@ export const Column = ({ column }: { column: Column }) => {
             style={{ minHeight: "400px", background: "#f0f0f0", padding: "8px" }}
           >
             {column.tasks.map((task, index) => (
-              <TaskCard key={task.id} task={task} index={index} />
+              <TaskCard key={task.id} task={{ id: task.id, title: task.title, description: task.description }} index={index} />
             ))}
             {provided.placeholder}
           </div>
         )}
       </Droppable>
-    </div>
+    </ColumnContainer>
   );
 };

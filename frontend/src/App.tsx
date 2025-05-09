@@ -1,20 +1,23 @@
 
 // src/App.tsx
 import { DragDropContext, DropResult } from "react-beautiful-dnd";
-import { TaskProvider } from "./contexts/TaskContext";
+import { useContext } from "react";
+import { TaskProvider, TaskContext } from "./contexts/TaskContext";
 import { Column } from "./components/Column";
 
 export const App = () => {
-  const { columns, setColumns } = useContext(TaskContext);
+  const { columns } = useContext(TaskContext);
 
   const onDragEnd = (result: DropResult) => {
     // Lógica para atualizar o estado quando uma tarefa é arrastada
-    const { source, destination } = result;
+    const { destination } = result;
     if (!destination) return;
 
-    const sourceCol = columns.find(col => col.id === source.droppableId);
     const destCol = columns.find(col => col.id === destination.droppableId);
-    // Atualize o estado aqui...
+    if (destCol) {
+      // Atualize o estado aqui usando destCol...
+      console.log("Destination column found:", destCol);
+    }
   };
 
   return (

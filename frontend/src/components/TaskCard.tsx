@@ -2,6 +2,13 @@
 import { Draggable } from "react-beautiful-dnd";
 import { Card, CardContent, Typography } from "@mui/material";
 
+// Define the Task type
+type Task = {
+  id: string;
+  title: string;
+  description: string;
+};
+
 export const TaskCard = ({ task, index }: { task: Task; index: number }) => {
   return (
     <Draggable draggableId={task.id} index={index}>
