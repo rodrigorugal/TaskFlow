@@ -22,13 +22,14 @@ Criar uma aplicação que integre todas as suas habilidades:
 
 ```mermaid
 graph TD
-    A[Front-end: React + TypeScript] --> B[API Node.js/Express]
-    A --> C[API Python/Flask]
-    A --> D[API PHP/CodeIgniter]
+    A[Frontend] -->|HTTP| B[API Node.js]
+    A -->|HTTP| C[API Python]
+    A -->|HTTP| D[API PHP]
     B --> E[(MongoDB)]
     C --> F[(PostgreSQL)]
     D --> G[(MySQL)]
     H[Docker] --> B & C & D
+    I[CI/CD] -->|GitHub Actions| H
 ```
 
 ---
@@ -73,13 +74,35 @@ graph TD
 ### **📂 Estrutura do Repositório**
 
 ```bash
-TaskFlow/
-├── frontend/           # React + TypeScript
-├── api-node/           # Node.js + Express + MongoDB
-├── api-python/         # Python + Flask + PostgreSQL
-├── api-php/            # PHP + CodeIgniter + MySQL
-├── docker-compose.yml  # Orquestração
-└── README.md           # Docs com prints e explicações
+TASKFLOW/
+├── frontend/               # App React + Vite
+│   ├── src/                # (Estrutura revisada anteriormente)
+│   └── Dockerfile          # Containerização do frontend
+│
+├── backend/
+│   ├── api-node/           # API Node.js (MongoDB)
+│   │   ├── src/
+│   │   │   ├── controllers/taskController.ts
+│   │   │   ├── models/Task.ts      # Schema MongoDB
+│   │   │   └── app.ts              # Config Express
+│   │   └── Dockerfile
+│   │
+│   ├── api-python/         # API Python (PostgreSQL)
+│   │   ├── app/
+│   │   │   ├── routes/report_routes.py
+│   │   │   └── models/report.py    # SQLAlchemy
+│   │   └── Dockerfile
+│   │
+│   └── api-php/            # API PHP (MySQL)
+│       ├── includes/
+│       │   ├── Task.class.php      # Classe de modelo
+│       │   └── db_connect.php      # Conexão MySQL
+│       └── Dockerfile
+│
+├── docker-compose.yml      # Orquestração de containers
+├── .github/workflows/      # CI/CD (GitHub Actions)
+│   └── deploy.yml
+└── README.md               # Documentação global
 ```
 
 ---
