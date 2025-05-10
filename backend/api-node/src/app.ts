@@ -1,11 +1,16 @@
-// src/app.ts
 import express from 'express';
-import cors from 'cors';
-import taskRoutes from './routes/TaskRoutes';
+import { errorHandler } from './middleware/errorHandler';
+import taskRoutes from './modules/tasks/task.routes';
 
 const app = express();
-app.use(cors());
+
+// Middlewares
 app.use(express.json());
+
+// Rotas
 app.use('/api', taskRoutes);
+
+// Error handler - DEVE ser o último middleware
+app.use(errorHandler as express.ErrorRequestHandler); // Cast explícito
 
 export default app;
