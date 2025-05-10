@@ -1,0 +1,33 @@
+# .gitignore para API Node.js (TaskFlow)
+
+# Dependências
+node_modules/
+npm-debug.log
+yarn-error.log
+
+# Ambiente
+.env
+.env.local
+.env.development
+
+# Build/Compilação
+dist/
+*.tsbuildinfo
+
+# IDE/Editores
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Logs
+logs/
+*.log
+
+# Testes
+coverage/
+.jest/
+
+# Sistema
+.DS_Store
+Thumbs.db
