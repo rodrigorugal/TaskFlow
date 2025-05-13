@@ -52,3 +52,25 @@ export const deleteTask = async (req: Request, res: Response) => {
     throw error;
   }
 };
+
+export const updateTask = async (req: Request, res: Response) => {
+  const { id } = req.params;
+  const { title, description, status } = req.body;
+
+  // Validação básica do ID
+  if (!id.match(/^[0-9a-fA-F]{24}$/)) {
+    throw new AppError('ID inválido', 400);
+  }
+
+  const updatedTask = await Task.findByIdAndUpdate(
+    id,
+    { title, description, status },
+    { new: true }
+  );
+
+  if (!updatedTask) {
+    throw new AppError('Tarefa não encontrada', 404);
+  }
+
+  res.json(updatedTask);
+};
